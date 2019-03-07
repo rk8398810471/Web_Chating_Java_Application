@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<script>  
+var request;  
+function sendInfo()  
+{  
+var v=document.vv.id.value;  
+var url="user_signup_ajax.jsp?val="+v;  
+  
+if(window.XMLHttpRequest){  
+request=new XMLHttpRequest();  
+}  
+else if(window.ActiveXObject){  
+request=new ActiveXObject("Microsoft.XMLHTTP");  
+}    
+try  
+{  
+request.onreadystatechange=getInfo;  
+request.open("GET",url,true);  
+request.send();  
+}  
+catch(e)  
+{  
+alert("Unable to connect to server");  
+}  
+}    
+function getInfo(){  
+if(request.readyState==4){  
+var val=request.responseText; 
+document.getElementById('demo').innerHTML=val;  
+}  
+}  
+ 
+</script>
+ 
+</head>
+<body>
+<form action="user-sign-up" method="post" name="vv">
+Name: <input name="name" placeholder="Name" maxlength=30 required><br>
+New id: <input name="id" placeholder="ID" onkeyup="sendInfo()" maxlength=20 required><span id="demo"> </span><br>
+Pass key: <input type="password" name="pass" placeholder="Pass key" maxlength=20 required><br>
+Security ques.<br>
+pet name:<input name="pet" maxlength=20 placeholder="pet name" required><br>
+<input type="submit" name="sign" value="  go  ">&nbsp;&nbsp;&nbsp;&nbsp;
+</form>
+</body>
+</html>
